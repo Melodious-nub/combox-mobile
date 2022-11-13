@@ -5,5 +5,111 @@
 </ion-header>
 
 <ion-content>
+  <ion-grid>
+    <form #complainForm="ngForm" (ngSubmit)="onComplainPost(complainForm)">
+    <ion-row>
+      <!-- for complain input -->
+      <ion-col size="12">
+        <h6>Your Complant or Suggestion *</h6>
+        <ion-item>
+        <ion-textarea ngModel name="Complain" placeholder="Type something here"></ion-textarea>
+        </ion-item>
+      </ion-col>
 
+      <!-- complain voice -->
+      <ion-col size="12">
+        <h6>Add voice message</h6>
+        <div class="voice-container">
+          <div class="text-center voice-countdown me-3" *ngIf="isRecording && !blobUrl"> {{recordedTime}} </div>
+          <div class="text-center">
+            <audio *ngIf="!isRecording && blobUrl" controls>
+              <source [src]="blobUrl" type="audio/webm">
+            </audio>
+          </div>
+        </div>
+        <!-- button for audio controls -->
+        <div class="mt-3 d-flex justify-content-center text-center animate__animated animate__slideInUp">
+          <!-- button clear -->
+          <div class="clear-btn" *ngIf="!isRecording && blobUrl">
+              <button type="button" id="clearRec" class="btn btn-outline-secondary btn-voice me-3" (click)="clearRecordedData()"><i class="fa-solid fa-broom" style="width: 16px; height: 16px;"></i></button>
+              <p><label class="me-3" for="clearRec">Clear</label></p>
+          </div>
+          <!-- button start record -->
+          <div class="play-btn" *ngIf="!isRecording && !blobUrl">
+              <button type="button" id="startRec" class="btn btn-outline-secondary btn-voice me-3" (click)="startRecording()"><i class="fa-solid fa-play" style="width: 16px; height: 16px;"></i></button>
+              <p><label class="me-3" for="startRec">Play</label></p>
+          </div>
+          <!-- button stop -->
+          <div class="stop-btn" *ngIf="isRecording && !blobUrl">
+              <button type="button" class="btn btn-outline-secondary btn-voice me-3" (click)="stopRecording()"><i class="fa-regular fa-circle-stop" style="width: 16px; height: 16px;"></i></button>
+              <p><label class="me-3" for="startRec">Stop</label></p>
+          </div>
+          <!-- button download -->
+          <div class="download-btn" *ngIf="!isRecording && blobUrl">
+              <button type="button" class="btn btn-outline-secondary btn-voice" (click)="download()"><i class="fa-solid fa-download" style="width: 16px; height: 16px;"></i></button>
+              <p><label for="startRec">Download</label></p>
+          </div>
+      </div>
+      </ion-col>
+      <!-- end complain voice -->
+
+      <!-- attch photos -->
+      <ion-col size="12">
+          <h6>Attach photos or videos</h6>
+          <ion-input type="file" id="formFileMultiple" multiple (change)="onSelect($event)"></ion-input>
+      </ion-col>
+
+      <!-- company name field -->
+      <ion-col size="12">
+        <ion-item style="margin-bottom: 5px; margin: auto;">
+          <ion-label position="floating">Company name *</ion-label>
+          <ion-input placeholder="Enter text" ngModel name="CompanyName" type="text"></ion-input>
+        </ion-item>
+      </ion-col>
+
+      <!-- Company address field -->
+      <ion-col size="12">
+        <ion-item style="margin-bottom: 5px;">
+          <ion-label position="floating">Company Address *</ion-label>
+          <ion-input placeholder="Enter text" ngModel name="CompanyName" type="text" ngModel name="CompanyAddress"></ion-input>
+        </ion-item>
+      </ion-col>
+
+      <!-- label alreday checkbox -->
+      <ion-col size="12">
+        <ion-item>
+          <ion-checkbox slot="start" [ngModel]="false" name="ALreadyTried"></ion-checkbox>
+          <ion-label>Already tried to find solution inside the company</ion-label>
+        </ion-item>        
+      </ion-col>
+
+      <!-- user data section -->
+      <ion-col size="12">
+        <ion-item>
+          <ion-checkbox slot="start" [ngModel]="true" name="SendAnonymously" type="checkbox" #SendAnonymously="ngModel"></ion-checkbox>
+          <ion-label>Send anonymously</ion-label>
+        </ion-item>
+
+        <!-- username -->
+        <ion-item style="margin-bottom: 5px;">
+          <ion-label position="floating">Your name</ion-label>
+          <ion-input ngModel name="YourName" type="text" placeholder="Write your name" [readonly]="SendAnonymously.value == true"></ion-input>
+        </ion-item>
+
+        <!-- username -->
+        <ion-item style="margin-bottom: 5px;">
+          <ion-label position="floating">Phone Number</ion-label>
+          <ion-input ngModel name="PhoneNumber" type="text" placeholder="Write your phone number" [readonly]="SendAnonymously.value == true"></ion-input>
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-list style="margin: auto; text-align: center;">
+          <ion-button type="submit">Send</ion-button>
+        </ion-list>
+      </ion-col>
+
+    </ion-row>
+  </form>
+  </ion-grid>
 </ion-content>

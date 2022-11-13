@@ -9,6 +9,14 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
+  generatedTicket:any = {};
+
+  ticketIDUser:any;
+
+  postSuggection(data:any) {
+    return this.http.post<any>(environment.baseUrl+'/api/v1/Suggection', data)
+  }
+
   login(data:any) {
     return this.http.post<any>(environment.baseUrl+'/api/v1/Tickets/mark-complete', data);
   }
