@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form style="max-width: 80%; text-align: center; margin: auto; margin-top: 10px;" #userLogin="ngForm" (ngSubmit)="onLogin(userLogin)">
+    <ion-item style="margin-bottom: 5px;">
+      <ion-label position="floating">Ticket number</ion-label>
+      <ion-input placeholder="Enter text" ngModel name="ticketNumber" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Password</ion-label>
+      <ion-input placeholder="Enter text" ngModel name="password" type="password"></ion-input>
+    </ion-item>
+
+    <ion-button type="submit" style="margin-top: 10px;">Login</ion-button>
+  </form>
+</ion-content>

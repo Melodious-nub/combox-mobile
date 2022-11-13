@@ -4,14 +4,11 @@
     font-size: 23px;
 }
 
-.btn-language {
-    display: flex;
+ion-button {
     align-items: center;
     width: 220px;
     height: 65px;
-    border: 1px solid #90278E;
     border-radius: 9px;
-    justify-content: space-evenly;
 }
 
 .flag {

@@ -19,6 +19,14 @@ const routes: Routes = [
     path: 'instructions',
     loadChildren: () => import('./pages/instructions/instructions.module').then( m => m.InstructionsPageModule)
   },
+  {
+    path: 'login',
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'write-and-post',
+    loadChildren: () => import('./pages/write-and-post/write-and-post.module').then( m => m.WriteAndPostPageModule)
+  },
 ];
 
 @NgModule({

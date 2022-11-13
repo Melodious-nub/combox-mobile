@@ -8,27 +8,22 @@
 
 <ion-content>
   <!-- language field -->
-  <div class="mt-5">
+  <ion-list style="text-align: center; margin-top: 20px;">
     <!-- English -->
-    <div class="mb-4">
-        <input type="button" class="btn-check" name="language" id="english" autocomplete="off">
-        <label class="btn btn-outline-secondary btn-language mb-2 mx-auto" for="english"><span><img class="flag" src="../../../assets/us.png" alt="english"></span> <span><b>English</b></span></label>
-        <!-- <ion-button class="btn-language mb-2 mx-auto" for="english">
-          <span><img class="flag" src="../../../assets/us.png" alt="english"></span> <span><b>English</b></span>
-        </ion-button> -->
-    </div>
+    <ion-button class="btn-language" href="home">
+      <span style="margin-right: 10px;"><img class="flag" src="../../../assets/us.png" alt="english"></span><span style="margin-left: 10px;"><b>English</b></span>
+    </ion-button>
 
     <!-- Vietnam -->
-    <div class="mb-4">
-      <input type="button" class="btn-check" name="language" id="Vietnam" autocomplete="off">
-      <label class="btn btn-outline-secondary btn-language mb-2 mx-auto" for="Vietnam"><span><img class="flag" src="../../../assets/Vietnam.png" alt="Vietnam"></span> <span><b>Tiếng <br> Việt Nam</b></span></label>
-    </div>
+    <ion-button class="btn-language">
+      <span style="margin-right: 10px;"><img class="flag" src="../../../assets/Vietnam.png" alt="Vietnam"></span> <span style="margin-left: 10px;"><b>Tiếng <br> Việt Nam</b></span>
+    </ion-button>
 
     <!-- Cambodia -->
-    <div class="mb-4">
-      <input type="button" class="btn-check" name="language" id="Cambodia" autocomplete="off">
-      <label class="btn btn-outline-secondary btn-language mb-2 mx-auto" for="Cambodia"><span><img class="flag" src="../../../assets/Cambodia.png" alt="Cambodia"></span> <span><b>ភាសាខ្មែរ</b></span></label>
-    </div>
-</div>
+    <ion-button class="btn-language">
+      <span style="margin-right: 10px;"><img class="flag" src="../../../assets/Cambodia.png" alt="Cambodia"></span> <span style="margin-left: 10px;"><b>ភាសាខ្មែរ</b></span>
+    </ion-button>
+    
+</ion-list>
 <!-- end row -->
 </ion-content>
