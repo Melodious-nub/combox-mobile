@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { WriteAndPostPageRoutingModule } from './write-and-post-routing.module';
 
 import { WriteAndPostPage } from './write-and-post.page';
+import { MaterialModule } from 'src/app/material.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    WriteAndPostPageRoutingModule
+    WriteAndPostPageRoutingModule,
+    MaterialModule,
   ],
   declarations: [WriteAndPostPage]
 })

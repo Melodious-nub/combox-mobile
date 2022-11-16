@@ -1,5 +1,130 @@
 .voice-container {
     background: #EFEFEF;
-    border-radius: 16px;
-    height: 55px;
+    border-radius: 12px;
+    height: 40px;
+    margin-top: 5px;
+}
+
+.voice-countdown {
+    font-weight: 700;
+    font-size: larger;
+    padding: 10px 0;
+}
+
+.example-form {
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+
+  .text-center {
+    text-align: center !important;
+  }
+
+  audio {
+    max-height: 30px;
+    margin: auto;
+    margin-top: 5px;
+    max-width: 95%;
+    width: 100%;
+  }
+
+  .title {
+    margin-left: 2px;
+    font-weight: 600;
+    font-size: 15px;
+    color: #000000;
+  }
+
+  .d-flex {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 5px;
+  }
+
+  .btn-voice {
+    background: transparent !important;
+    // border-radius: 50%;
+    border: transparent !important;
+    padding: 10px 0px 0px 0px;
+}
+
+// .fa-xl {
+//   color: #962d91;
+// }
+
+.mat-form-field {
+  font-size: 10px;
+  font-weight: normal;
+  line-height: 1.125;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: normal;
+  background: transparent;
+}
+
+.example-margin {
+  margin: 5px 4px;
+}
+
+/* for switch */
+
+.toggle {
+  cursor: pointer;
+  display: inline-block;
+}
+
+.toggle-switch {
+  display: inline-block;
+  background: #ccc;
+  border-radius: 16px;
+  width: 58px;
+  height: 32px;
+  position: relative;
+  vertical-align: middle;
+  transition: background 0.25s;
+}
+
+.toggle-switch:before {
+  content: url(../../../assets/img/anno.png);
+  padding: 2px 3px;
+}
+
+.toggle-switch:before {
+  display: block;
+  background: linear-gradient(to bottom, #fff 0%, #eee 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  transition: left 0.25s;
+}
+
+.toggle:hover .toggle-switch:before {
+  background: linear-gradient(to bottom, #fff 0%, #fff 100%);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5);
+}
+
+.toggle-checkbox:checked+.toggle-switch {
+  background: #962d91;
+}
+
+.toggle-checkbox:checked+.toggle-switch:before {
+  left: 30px;
+}
+
+.toggle-checkbox {
+  position: absolute;
+  visibility: hidden;
+}
+
+.toggle-label {
+  position: relative;
+  top: 2px;
 }

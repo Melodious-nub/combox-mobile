@@ -1,26 +1,23 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>write-and-post</ion-title>
+    <ion-title>
+      <h3 style="color: #962d91;">ComBox</h3>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-grid>
-    <form #complainForm="ngForm" (ngSubmit)="onComplainPost(complainForm)">
-    <ion-row>
+    <form #complainForm="ngForm" (ngSubmit)="onComplainPost(complainForm)" style="padding: 8px;">
       <!-- for complain input -->
-      <ion-col size="12">
-        <h6>Your Complant or Suggestion *</h6>
-        <ion-item>
-        <ion-textarea ngModel name="Complain" placeholder="Type something here"></ion-textarea>
-        </ion-item>
-      </ion-col>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Your Complant or Suggestion *</mat-label>
+          <textarea matInput ngModel name="Complain" placeholder="Please include as much info as possible" rows="3"></textarea>
+        </mat-form-field>
 
       <!-- complain voice -->
-      <ion-col size="12">
-        <h6>Add voice message</h6>
+      <span class="title">Add voice message</span>
         <div class="voice-container">
-          <div class="text-center voice-countdown me-3" *ngIf="isRecording && !blobUrl"> {{recordedTime}} </div>
+          <div class="text-center voice-countdown" *ngIf="isRecording && !blobUrl"> {{recordedTime}} </div>
           <div class="text-center">
             <audio *ngIf="!isRecording && blobUrl" controls>
               <source [src]="blobUrl" type="audio/webm">
@@ -28,88 +25,73 @@
           </div>
         </div>
         <!-- button for audio controls -->
-        <div class="mt-3 d-flex justify-content-center text-center animate__animated animate__slideInUp">
+        <div class="d-flex text-center animate__animated animate__slideInUp">
           <!-- button clear -->
           <div class="clear-btn" *ngIf="!isRecording && blobUrl">
-              <button type="button" id="clearRec" class="btn btn-outline-secondary btn-voice me-3" (click)="clearRecordedData()"><i class="fa-solid fa-broom" style="width: 16px; height: 16px;"></i></button>
-              <p><label class="me-3" for="clearRec">Clear</label></p>
+              <button type="button" id="clearRec" class="btn-voice me-3" (click)="clearRecordedData()"><i class="fa-solid fa-broom fa-xl" style="width: 16px; height: 16px;"></i></button><br>
+              <span>Clear</span>
           </div>
           <!-- button start record -->
           <div class="play-btn" *ngIf="!isRecording && !blobUrl">
-              <button type="button" id="startRec" class="btn btn-outline-secondary btn-voice me-3" (click)="startRecording()"><i class="fa-solid fa-play" style="width: 16px; height: 16px;"></i></button>
-              <p><label class="me-3" for="startRec">Play</label></p>
+              <button type="button" id="startRec" class="btn-voice me-3" (click)="startRecording()"><i class="fa-solid fa-play fa-xl" style="width: 16px; height: 16px;"></i></button><br>
+              <span>Play</span>
           </div>
           <!-- button stop -->
           <div class="stop-btn" *ngIf="isRecording && !blobUrl">
-              <button type="button" class="btn btn-outline-secondary btn-voice me-3" (click)="stopRecording()"><i class="fa-regular fa-circle-stop" style="width: 16px; height: 16px;"></i></button>
-              <p><label class="me-3" for="startRec">Stop</label></p>
+              <button type="button" class="btn-voice me-3" (click)="stopRecording()"><i class="fa-solid fa-stop fa-xl" style="width: 16px; height: 16px;"></i></button><br>
+              <span>Stop</span>
           </div>
           <!-- button download -->
           <div class="download-btn" *ngIf="!isRecording && blobUrl">
-              <button type="button" class="btn btn-outline-secondary btn-voice" (click)="download()"><i class="fa-solid fa-download" style="width: 16px; height: 16px;"></i></button>
-              <p><label for="startRec">Download</label></p>
+              <button type="button" class="btn-voice" (click)="download()"><i class="fa-solid fa-download fa-xl" style="width: 16px; height: 16px;"></i></button><br>
+              <span>Download</span>
           </div>
       </div>
-      </ion-col>
       <!-- end complain voice -->
 
       <!-- attch photos -->
-      <ion-col size="12">
-          <h6>Attach photos or videos</h6>
+          <span class="title">Attach photos or videos</span>
           <ion-input type="file" id="formFileMultiple" multiple (change)="onSelect($event)"></ion-input>
-      </ion-col>
 
       <!-- company name field -->
-      <ion-col size="12">
-        <ion-item style="margin-bottom: 5px; margin: auto;">
-          <ion-label position="floating">Company name *</ion-label>
-          <ion-input placeholder="Enter text" ngModel name="CompanyName" type="text"></ion-input>
-        </ion-item>
-      </ion-col>
+        <mat-form-field class="example-full-width" style="margin-top: 6px;" appearance="fill">
+          <mat-label>Company name *</mat-label>
+          <input matInput ngModel name="CompanyName" type="text" placeholder="Write the name of company">
+        </mat-form-field>
 
       <!-- Company address field -->
-      <ion-col size="12">
-        <ion-item style="margin-bottom: 5px;">
-          <ion-label position="floating">Company Address *</ion-label>
-          <ion-input placeholder="Enter text" ngModel name="CompanyName" type="text" ngModel name="CompanyAddress"></ion-input>
-        </ion-item>
-      </ion-col>
+        <mat-form-field class="example-full-width" style="margin-top: 6px;" appearance="fill">
+          <mat-label>Company Address *</mat-label>
+          <input matInput required name="CompanyAddress" type="text" placeholder="Write the address of company">
+        </mat-form-field>
 
       <!-- label alreday checkbox -->
-      <ion-col size="12">
-        <ion-item>
-          <ion-checkbox slot="start" [ngModel]="false" name="ALreadyTried"></ion-checkbox>
-          <ion-label>Already tried to find solution inside the company</ion-label>
-        </ion-item>        
-      </ion-col>
+        <section>
+          <mat-checkbox class="example-margin"><span style="font-size: 14px;">Already tried to find solution inside the company</span></mat-checkbox>
+        </section>
 
       <!-- user data section -->
-      <ion-col size="12">
-        <ion-item>
-          <ion-checkbox slot="start" [ngModel]="true" name="SendAnonymously" type="checkbox" #SendAnonymously="ngModel"></ion-checkbox>
-          <ion-label>Send anonymously</ion-label>
-        </ion-item>
+        <!-- Rounded switch -->
+        <label class="toggle">
+          <span class="toggle-label form-label">Send anonymously</span>
+          <input [ngModel]="true" name="SendAnonymously" class="toggle-checkbox" type="checkbox" #SendAnonymously="ngModel">
+          <div class="toggle-switch"></div>
+        </label>
 
         <!-- username -->
-        <ion-item style="margin-bottom: 5px;">
-          <ion-label position="floating">Your name</ion-label>
-          <ion-input ngModel name="YourName" type="text" placeholder="Write your name" [readonly]="SendAnonymously.value == true"></ion-input>
-        </ion-item>
+        <mat-form-field class="example-full-width" style="margin-top: 6px;" appearance="fill">
+          <mat-label>Your name</mat-label>
+          <input matInput ngModel name="YourName" type="text" placeholder="Write your name">
+        </mat-form-field>
 
-        <!-- username -->
-        <ion-item style="margin-bottom: 5px;">
-          <ion-label position="floating">Phone Number</ion-label>
-          <ion-input ngModel name="PhoneNumber" type="text" placeholder="Write your phone number" [readonly]="SendAnonymously.value == true"></ion-input>
-        </ion-item>
-      </ion-col>
+        <!-- phone number -->
+        <mat-form-field class="example-full-width" style="margin-top: 6px;" appearance="fill">
+          <mat-label>Your name</mat-label>
+          <input matInput ngModel name="PhoneNumber" type="text" placeholder="Write your phone number" [readonly]="SendAnonymously.value == true">
+        </mat-form-field>
 
-      <ion-col size="12">
         <ion-list style="margin: auto; text-align: center;">
           <ion-button type="submit">Send</ion-button>
         </ion-list>
-      </ion-col>
-
-    </ion-row>
   </form>
-  </ion-grid>
 </ion-content>

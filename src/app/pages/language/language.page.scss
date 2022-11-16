@@ -1,14 +1,25 @@
-.select-language {
+.btn-language {
     font-style: normal;
     font-weight: 600;
-    font-size: 23px;
+    font-size: 14px;
+}
+ion-col {
+    padding: 0px;
 }
 
 ion-button {
     align-items: center;
-    width: 220px;
-    height: 65px;
+    width: 180px;
+    height: 55px;
     border-radius: 9px;
+    --border-color:#962d91;
+    --background-hover: #962d91;
+    --background-activated: #962d91;
+    --background-focused: #962d91;
+    --box-shadow: 0 2px 6px 0 rgb(0, 0, 0, 0.25);
+    --ripple-color: #962d91;
+    --color: #962d91;
+    --color-hover: white !important;
 }
 
 .flag {

@@ -8,6 +8,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AudioRecordingService } from './services/audio-recording.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material.module';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -17,6 +19,8 @@ import { AudioRecordingService } from './services/audio-recording.service';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MaterialModule,
   ],
   providers: [
     AudioRecordingService,
