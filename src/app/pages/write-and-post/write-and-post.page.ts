@@ -146,10 +146,7 @@ export class WriteAndPostPage implements OnInit,OnDestroy {
     // console.log(this.imageFile[0]);
   }
 
-  onComplainPost(complainForm: NgForm) {
-
-    // console.log(complainForm.value);
-    
+  onComplainPost(complainForm: NgForm) {    
     const formData = new FormData();
 
     // formData.append('imageFile', this.imageFile[0]);
@@ -165,9 +162,7 @@ export class WriteAndPostPage implements OnInit,OnDestroy {
     formData.append('YourName', complainForm.value.YourName);
     formData.append('PhoneNumber', complainForm.value.PhoneNumber);
     formData.append('ALreadyTried', complainForm.value.ALreadyTried);
-    //  console.log(formData.get("AudioFile"))
-    //  console.log(formData.get("ImageFile"))
-    //  console.log(formData.get("CompanyName"))
+
     this.api.postSuggection(formData).subscribe(res => {
       // console.log('from back end')
       console.log('post response',res);
@@ -186,5 +181,7 @@ export class WriteAndPostPage implements OnInit,OnDestroy {
     }
     )
   }
+
+  // for file select
 
 }

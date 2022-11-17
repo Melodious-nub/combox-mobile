@@ -27,6 +27,10 @@ const routes: Routes = [
     path: 'write-and-post',
     loadChildren: () => import('./pages/write-and-post/write-and-post.module').then( m => m.WriteAndPostPageModule)
   },
+  {
+    path: 'save-pincode',
+    loadChildren: () => import('./pages/save-pincode/save-pincode.module').then( m => m.SavePincodePageModule)
+  },
 ];
 
 @NgModule({

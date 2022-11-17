@@ -53,9 +53,9 @@
     padding: 10px 0px 0px 0px;
 }
 
-// .fa-xl {
-//   color: #962d91;
-// }
+.fa-xl {
+  color: #962d91;
+}
 
 .mat-form-field {
   font-size: 10px;
@@ -73,16 +73,18 @@
 /* for switch */
 
 .toggle {
-  cursor: pointer;
-  display: inline-block;
+  // cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
 }
 
 .toggle-switch {
   display: inline-block;
   background: #ccc;
   border-radius: 16px;
-  width: 58px;
-  height: 32px;
+  width: 55px;
+  height: 28px;
   position: relative;
   vertical-align: middle;
   transition: background 0.25s;
@@ -98,11 +100,11 @@
   background: linear-gradient(to bottom, #fff 0%, #eee 100%);
   border-radius: 50%;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   position: absolute;
-  top: 4px;
-  left: 4px;
+  top: 2px;
+  left: 3px;
   transition: left 0.25s;
 }
 
@@ -116,7 +118,7 @@
 }
 
 .toggle-checkbox:checked+.toggle-switch:before {
-  left: 30px;
+  left: 26px;
 }
 
 .toggle-checkbox {
@@ -127,4 +129,77 @@
 .toggle-label {
   position: relative;
   top: 2px;
+}
+
+.form-label {
+  margin-right: 12px;
+}
+
+.line-hr {
+  margin: 12px 0px;
+  text-align: center;
+  border-bottom: 2px solid transparent;
+  border-image: linear-gradient(270deg, rgba(144, 39, 142, 0) 0%, #90278E 47.71%, rgba(144, 39, 142, 0) 100%);
+  border-image-slice: 1;
+  width: 100%;
+}
+
+ion-button {
+  --background: #90278E !important;
+}
+
+/* // overwrite the checkbox background */
+
+::ng-deep .mat-checkbox-checked .mat-checkbox-background,
+.mat-checkbox-indeterminate .mat-checkbox-background {
+    background-color: #92428e !important;
+}
+
+.color-sum {
+  color: #90278E;
+}
+
+.file-input {
+  display: inline-block;
+  text-align: left;
+  background: #fff;
+  padding: 10px 2px;
+  width: 450px;
+  position: relative;
+  border-radius: 3px;
+}
+
+.file-input > [type='file'] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.file-input > .button {
+  display: inline-block;
+  cursor: pointer;
+  background: #eee;
+  padding: 8px 16px;
+  border-radius: 2px;
+  margin-right: 8px;
+}
+
+.file-input:hover > .button {
+  background: #90278E;
+  color: white;
+}
+
+.file-input > .label {
+  color: #333;
+  white-space: wrap;
+  opacity: .5;
+}
+
+.file-input.-chosen > .label {
+  opacity: 1;
 }
