@@ -6,16 +6,28 @@
 
 <ion-content>
   <form style="max-width: 80%; text-align: center; margin: auto; margin-top: 30px;" #userLogin="ngForm" (ngSubmit)="onLogin(userLogin)">
-    <ion-item style="margin-bottom: 15px;" fill="outline">
+    <!-- <ion-item style="margin-bottom: 15px;" fill="outline">
       <ion-label position="floating">Ticket number</ion-label>
       <ion-input placeholder="Enter ticket number" ngModel name="ticketNumber" type="text"></ion-input>
-    </ion-item>
+    </ion-item> -->
 
-    <ion-item fill="outline" style="margin-bottom: 15px;">
+    <mat-form-field appearance="fill" class="example-full-width">
+      <mat-label>Ticket number</mat-label>
+      <input matInput placeholder="Enter ticket number" ngModel name="ticketNumber" type="text">
+    </mat-form-field>
+
+    <!-- <ion-item fill="outline" style="margin-bottom: 15px;">
       <ion-label position="floating">Password</ion-label>
       <ion-input placeholder="Enter ticket number" ngModel name="password" type="password"></ion-input>
-    </ion-item>
+    </ion-item> -->
 
-    <ion-button type="submit" style="margin-top: 10px; text-transform: none;">Login</ion-button>
+    <mat-form-field appearance="fill" class="example-full-width">
+      <mat-label>Password</mat-label>
+      <input matInput placeholder="Enter your password" ngModel name="password" type="password">
+    </mat-form-field>
+
+    <div>
+      <ion-button type="submit" style="margin-top: 10px; text-transform: none;">Login</ion-button>
+    </div>
   </form>
 </ion-content>
