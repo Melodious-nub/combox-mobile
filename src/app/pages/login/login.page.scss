@@ -1,0 +1,29 @@
+// ion-item.item-has-focus {
+//     --highlight-background:black;
+// }
+
+:host {
+    .item-interactive.ion-invalid{
+     --highlight-background: yellow !important;
+   }
+   .item-interactive.ion-valid{
+     --highlight-background: black !important;
+   }
+   .item-has-focus{
+    --highlight-background: #e2e2e2;
+ }
+ }
+
+ ion-item {
+    --border-color: black;
+    --highlight-background: black !important;
+  }
+
+  ion-label {
+    color: black !important;
+ }
+
+ ion-button {
+    --background: #90278E;
+ }
+

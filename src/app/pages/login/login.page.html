@@ -1,21 +1,21 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>login</ion-title>
+    <ion-title>Login</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <form style="max-width: 80%; text-align: center; margin: auto; margin-top: 10px;" #userLogin="ngForm" (ngSubmit)="onLogin(userLogin)">
-    <ion-item style="margin-bottom: 5px;">
+  <form style="max-width: 80%; text-align: center; margin: auto; margin-top: 30px;" #userLogin="ngForm" (ngSubmit)="onLogin(userLogin)">
+    <ion-item style="margin-bottom: 15px;" fill="outline">
       <ion-label position="floating">Ticket number</ion-label>
-      <ion-input placeholder="Enter text" ngModel name="ticketNumber" type="text"></ion-input>
+      <ion-input placeholder="Enter ticket number" ngModel name="ticketNumber" type="text"></ion-input>
     </ion-item>
 
-    <ion-item>
+    <ion-item fill="outline" style="margin-bottom: 15px;">
       <ion-label position="floating">Password</ion-label>
-      <ion-input placeholder="Enter text" ngModel name="password" type="password"></ion-input>
+      <ion-input placeholder="Enter ticket number" ngModel name="password" type="password"></ion-input>
     </ion-item>
 
-    <ion-button type="submit" style="margin-top: 10px;">Login</ion-button>
+    <ion-button type="submit" style="margin-top: 10px; text-transform: none;">Login</ion-button>
   </form>
 </ion-content>

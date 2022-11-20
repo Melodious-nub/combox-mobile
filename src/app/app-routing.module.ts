@@ -31,6 +31,10 @@ const routes: Routes = [
     path: 'save-pincode',
     loadChildren: () => import('./pages/save-pincode/save-pincode.module').then( m => m.SavePincodePageModule)
   },
+  {
+    path: 'user-dashboard',
+    loadChildren: () => import('./pages/user-dashboard/user-dashboard.module').then( m => m.UserDashboardPageModule)
+  },
 ];
 
 @NgModule({
