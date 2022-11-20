@@ -41,12 +41,6 @@ export class WriteAndPostPage implements OnInit,OnDestroy {
       this.blobUrl = this.sanitizer.bypassSecurityTrustUrl(
         URL.createObjectURL(data.blob)  
       );
-      // console.log('pro checko ',data)
-      //  console.log('pro check1 ',data.blob)
-      //  console.log('pro check2 ',this.teste.blob)
-      //  console.log('pro check3 ',this.blobUrl)
-      //this.saveAsBase64String();
-
     });
 
   }
@@ -96,9 +90,6 @@ export class WriteAndPostPage implements OnInit,OnDestroy {
       var base64data = reader.result;
       // console.log('string base 64',base64data);
     }
-  //  audioChunks.push(url)
-  //  console.log('audio',audioChunks)
-   // const audioBlob = new Blob(audioChunks, { 'type' : 'audio/wav; codecs=MS_PCM' });
     const link = document.createElement("a");
     link.href = url;
     link.download = this.teste.title;
@@ -141,9 +132,6 @@ export class WriteAndPostPage implements OnInit,OnDestroy {
     if(this.imageFile.length>0){
       this.saveAsBase64String()
     }
-    //this.imageFile.push(this.teste.blob);
-    
-    // console.log(this.imageFile[0]);
   }
 
   onComplainPost(complainForm: NgForm) {    
@@ -153,7 +141,7 @@ export class WriteAndPostPage implements OnInit,OnDestroy {
     formData.append('ImageFile', this.fileString);
     formData.append('AudioFile', this.teste.blob);
    // formData.append('audioFIle', this.fileString);
-    console.log('img file string',this.fileString);
+    // console.log('img file string',this.fileString);
     
     formData.append('Complain', complainForm.value.Complain);
     formData.append('CompanyName', complainForm.value.CompanyName);
@@ -165,7 +153,7 @@ export class WriteAndPostPage implements OnInit,OnDestroy {
 
     this.api.postSuggection(formData).subscribe(res => {
       // console.log('from back end')
-      console.log('post response',res);
+      // console.log('post response',res);
       this.fileString = '';
       
       if (res.success === true && res.statusCode === 200) {

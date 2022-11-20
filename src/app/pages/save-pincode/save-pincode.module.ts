@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { SavePincodePageRoutingModule } from './save-pincode-routing.module';
 
 import { SavePincodePage } from './save-pincode.page';
+import { MaterialModule } from 'src/app/material.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    SavePincodePageRoutingModule
+    SavePincodePageRoutingModule,
+    MaterialModule
   ],
   declarations: [SavePincodePage]
 })
