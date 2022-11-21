@@ -8,6 +8,7 @@ import { LoginPageRoutingModule } from './login-routing.module';
 
 import { LoginPage } from './login.page';
 import { MaterialModule } from 'src/app/material.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { MaterialModule } from 'src/app/material.module';
     FormsModule,
     IonicModule,
     LoginPageRoutingModule,
-    MaterialModule
+    MaterialModule,
+    TranslateModule
   ],
   declarations: [LoginPage]
 })

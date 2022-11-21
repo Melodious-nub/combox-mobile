@@ -10,12 +10,12 @@
     <form #complainForm="ngForm" (ngSubmit)="onComplainPost(complainForm)" style="padding: 8px;">
       <!-- for complain input -->
         <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Your Complant or Suggestion</mat-label>
-          <textarea matInput ngModel required name="Complain" placeholder="Please include as much info as possible" rows="3"></textarea>
+          <mat-label>{{"Your Complaint or Suggestion" | translate}}</mat-label>
+          <textarea matInput ngModel required name="Complain" placeholder="{{'Please include as much info as possible' | translate}}" rows="3"></textarea>
         </mat-form-field>
 
       <!-- complain voice -->
-      <span class="title">Add voice message</span>
+      <span class="title">{{'Add voice message' | translate}}</span>
         <div class="voice-container">
           <div class="text-center voice-countdown" *ngIf="isRecording && !blobUrl"> {{recordedTime}} </div>
           <div class="text-center">
@@ -50,7 +50,7 @@
       <!-- end complain voice -->
 
       <!-- attch photos -->
-          <span class="title">Attach photos or videos</span>
+          <span class="title">{{'Attach photos or videos' | translate}}</span>
           <!-- <ion-input type="file" id="formFileMultiple" multiple (change)="onSelect($event)"></ion-input> -->
           <div class='file-input'>
             <input type='file' #fileInput (change)="onSelect($event)">
@@ -59,46 +59,46 @@
           </div>
 
       <!-- company name field -->
-        <mat-form-field class="example-full-width" style="margin-top: 6px;" appearance="outline">
-          <mat-label>Company name</mat-label>
-          <input matInput ngModel required name="CompanyName" type="text" placeholder="Write the name of company">
+        <mat-form-field class="example-full-width" style="margin-top: 6px;" appearance="fill">
+          <mat-label>{{'Company name' | translate}}</mat-label>
+          <input matInput ngModel required name="CompanyName" type="text" placeholder="{{'Write the name of company' | translate}}">
         </mat-form-field>
 
       <!-- Company address field -->
-        <mat-form-field class="example-full-width" style="margin-top: 6px;" appearance="fill">
-          <mat-label>Company Address</mat-label>
-          <input matInput ngModel required name="CompanyAddress" type="text" placeholder="Write the address of company">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>{{'Company Address' | translate}}</mat-label>
+          <input matInput ngModel required name="CompanyAddress" type="text" placeholder="{{'Write the address of company' | translate}}">
         </mat-form-field>
 
       <!-- label alreday checkbox -->
-        <section>
-          <mat-checkbox [ngModel]="false" name="ALreadyTried" class="example-margin"><span style="font-size: 14px;">Already tried to find solution inside the company</span></mat-checkbox>
+        <section style="margin-bottom: 15px;">
+          <mat-checkbox [ngModel]="false" name="ALreadyTried" class="example-margin"><span style="font-size: 14px;">{{'Already tried to find solution inside the company' | translate}}</span></mat-checkbox>
         </section>
 
         <div class="line-hr"></div>
 
       <!-- user data section -->
         <!-- Rounded switch -->
-        <label class="toggle">
-          <span class="toggle-label title form-label">Send anonymously</span>
+        <label class="toggle" style="margin-top: 15px;">
+          <span class="toggle-label title form-label">{{'Send anonymously' | translate}}</span>
           <input [ngModel]="true" name="SendAnonymously" class="toggle-checkbox" type="checkbox" #SendAnonymously="ngModel">
           <div class="toggle-switch"></div>
         </label>
 
         <!-- username -->
         <mat-form-field class="example-full-width" style="margin-top: 6px;" appearance="fill">
-          <mat-label>Your name</mat-label>
-          <input matInput ngModel name="YourName" type="text" placeholder="Write your name" [readonly]="SendAnonymously.value == true">
+          <mat-label>{{'Your name' | translate}}</mat-label>
+          <input matInput ngModel name="YourName" type="text" placeholder="{{'Write your name' | translate}}" [readonly]="SendAnonymously.value == true">
         </mat-form-field>
 
         <!-- phone number -->
         <mat-form-field class="example-full-width" style="margin-top: 6px;" appearance="fill">
-          <mat-label>Your phone number</mat-label>
-          <input matInput ngModel name="PhoneNumber" type="text" placeholder="Write your phone number" [readonly]="SendAnonymously.value == true">
+          <mat-label>{{'Phone Number' | translate}}</mat-label>
+          <input matInput ngModel name="PhoneNumber" type="text" placeholder="{{'Write your phone number' | translate}}" [readonly]="SendAnonymously.value == true">
         </mat-form-field>
 
         <ion-list style="margin: auto; text-align: center;">
-          <ion-button type="submit">Send</ion-button>
+          <ion-button type="submit">{{'Send' | translate}}</ion-button>
         </ion-list>
   </form>
 </ion-content>

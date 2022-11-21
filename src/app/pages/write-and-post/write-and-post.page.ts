@@ -157,6 +157,7 @@ export class WriteAndPostPage implements OnInit,OnDestroy {
       this.fileString = '';
       
       if (res.success === true && res.statusCode === 200) {
+        this.router.navigate(['save-pincode']);
         this.api.generatedTicket = res.data;
       } else {
         // alert(res.message);

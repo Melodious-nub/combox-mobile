@@ -10,31 +10,31 @@
   <!-- language field -->
   <ion-list style="text-align: center;">
     <ion-grid>
-      <ion-row style="justify-content: center;">
+      <ion-row style="justify-content: center;" ngForm #selectLang="ngForm">
         <ion-col size="12">
           <!-- English -->
-          <ion-button fill="outline" class="btn-language" href="home">
+          <ion-button fill="outline" class="btn-language" (click)="selectLanguage(english)">
             <span style="margin-right: 10px;"><img class="flag" src="../../../assets/img/us.png" alt="english"></span><span style="margin-left: 10px;"><b>English</b></span>
           </ion-button>
         </ion-col>
 
         <ion-col size="12">
           <!-- Vietnam -->
-          <ion-button fill="outline" class="btn-language">
-            <span style="margin-right: 10px;"><img class="flag" src="../../../assets/img/bangladesh.png" alt="Vietnam"></span> <span style="margin-left: 10px;"><b>Bangla</b></span>
+          <ion-button fill="outline" class="btn-language" (click)="selectLanguage(bengali)">
+            <span style="margin-right: 10px;"><img class="flag" src="../../../assets/img/bangladesh.png"></span> <span style="margin-left: 10px;"><b>Bangla</b></span>
           </ion-button>
         </ion-col>
 
         <ion-col size="12">
           <!-- Vietnam -->
-          <ion-button fill="outline" class="btn-language">
-            <span style="margin-right: 10px;"><img class="flag" src="../../../assets/img/Vietnam.png" alt="Vietnam"></span> <span style="margin-left: 10px;"><b>Tiếng <br> Việt Nam</b></span>
+          <ion-button fill="outline" class="btn-language" (click)="selectLanguage(viet)">
+            <span style="margin-right: 10px;"><img class="flag" src="../../../assets/img/Vietnam.png"></span> <span style="margin-left: 10px;"><b>Tiếng <br> Việt Nam</b></span>
           </ion-button>
         </ion-col>
 
         <ion-col size="12">
           <!-- Cambodia -->
-          <ion-button fill="outline" class="btn-language">
+          <ion-button fill="outline" class="btn-language" (click)="selectLanguage(cambodian)">
             <span style="margin-right: 10px;"><img class="flag" src="../../../assets/img/Cambodia.png" alt="Cambodia"></span> <span style="margin-left: 10px;"><b>ភាសាខ្មែរ</b></span>
           </ion-button>
         </ion-col>

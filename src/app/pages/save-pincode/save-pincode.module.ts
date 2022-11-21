@@ -8,6 +8,7 @@ import { SavePincodePageRoutingModule } from './save-pincode-routing.module';
 
 import { SavePincodePage } from './save-pincode.page';
 import { MaterialModule } from 'src/app/material.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { MaterialModule } from 'src/app/material.module';
     FormsModule,
     IonicModule,
     SavePincodePageRoutingModule,
-    MaterialModule
+    MaterialModule,
+    TranslateModule
   ],
   declarations: [SavePincodePage]
 })

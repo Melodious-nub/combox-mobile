@@ -13,7 +13,7 @@ import { LanguagePage } from './language.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    LanguagePageRoutingModule
+    LanguagePageRoutingModule,
   ],
   declarations: [LanguagePage]
 })

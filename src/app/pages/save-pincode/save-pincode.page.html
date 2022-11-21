@@ -9,9 +9,9 @@
 <ion-content>
   <section style="text-align: center;">
     <h3>
-      <b>Thank you for you submision</b>
+      <b>{{'Thank you for you submision' | translate}}</b>
     </h3>
-    <p style="padding: 0px 10px;">Save the Ticket number and password for further query. Please wait 3 working days before checking for an answer.</p>
+    <p style="padding: 0px 10px;">{{'Save the Ticket number and password for further query. Please wait 3 working days before checking for an answer.' | translate}}</p>
   </section>
 
   <!-- ticket info and save clipboard options -->
@@ -19,12 +19,12 @@
     <ion-card-content>
       <p class="d-flex">
         <span><img src="../../../assets/img/ion_ticket.png"></span>
-        <span>Ticket number: </span>
+        <span>{{'Ticket number' | translate}}: </span>
         <span><b>Tr-01234</b></span>
       </p>
       <p class="d-flex">
         <img src="../../../assets/img/fluent_password-16-filled.png">
-        <span>Password: </span>
+        <span>{{'Password' | translate}}: </span>
         <span><b>abcdfkjdjf</b></span>
       </p>
       <ion-button size="small" class="btn-ion-cpy" [cdkCopyToClipboard]="totalTicketInfo"><i class="fa-regular fa-copy" style="margin-right: 3px;"></i>Copy</ion-button>

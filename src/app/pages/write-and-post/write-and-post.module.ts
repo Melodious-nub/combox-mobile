@@ -8,6 +8,7 @@ import { WriteAndPostPageRoutingModule } from './write-and-post-routing.module';
 
 import { WriteAndPostPage } from './write-and-post.page';
 import { MaterialModule } from 'src/app/material.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { MaterialModule } from 'src/app/material.module';
     IonicModule,
     WriteAndPostPageRoutingModule,
     MaterialModule,
+    TranslateModule,
   ],
   declarations: [WriteAndPostPage]
 })
