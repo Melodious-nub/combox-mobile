@@ -67,18 +67,20 @@
       <ng-template>
         <ion-header>
           <ion-toolbar>
-            <ion-title>Ticket Id</ion-title>
+            <ion-title>{{ticketId}}</ion-title>
             <ion-buttons slot="end">
               <ion-button (click)="setOpen(false)">Close</ion-button>
             </ion-buttons>
           </ion-toolbar>
         </ion-header>
         <ion-content class="ion-padding">
-          <p><span style="padding-right: 10px;"><b>Date:</b></span><span>12-9-2022</span></p>
-          <p><span style="padding-right: 10px;"><b>Company Name:</b></span><span>Sum</span></p>
-          <p><span style="padding-right: 10px;"><b>Company address:</b></span><span>Gulshan</span></p>
-          <p><span style="padding-right: 10px;"><b>Complain:</b></span><span>Need speed up a little</span></p>
-          <p><span style="padding-right: 10px;"><b>Attached voice:</b></span><span>Need speed up a little</span></p>
+          <p><span style="padding-right: 10px;"><b>Date:</b></span><span>{{ticketData.date}}</span></p>
+          <p><span style="padding-right: 10px;"><b>Company Name:</b></span><span>{{ticketData.companyName}}</span></p>
+          <p><span style="padding-right: 10px;"><b>Company address:</b></span><span>{{ticketData.companyAddress}}</span></p>
+          <p><span style="padding-right: 10px;"><b>Complain:</b></span><span>{{ticketData.complain}}</span></p>
+          <p><span style="padding-right: 10px;"><b>Attached voice:</b></span><br><span><p class="text-start" *ngIf="ticketData.imageFile !== null"><img [src]="photoURL()" width="84px"
+            style="border-radius: 15px; max-height: 84px; cursor: pointer;" alt=""
+            data-bs-toggle="modal" data-bs-target="#modalImage"></p></span></p>
         </ion-content>
       </ng-template>
     </ion-modal>

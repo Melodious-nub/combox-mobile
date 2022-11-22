@@ -21,5 +21,17 @@ export class DataService {
     return this.http.post<any>(environment.baseUrl+'/api/v1/Tickets/mark-complete', data);
   }
 
+  getSuggection(data:any) {
+    return this.http.get<any>(environment.baseUrl+'/api/v1/Suggection'+'?ticketNumber=' + data)
+  }
+
+  postReview(data:any) {
+    return this.http.post<any>(environment.baseUrl+'/api/v1/Review', data)
+  }
+
+  getReview(data:any) {
+    return this.http.get<any>(environment.baseUrl+'/api/v1/Review'+'?ticketNumber=' + data)
+  }
+
 
 }

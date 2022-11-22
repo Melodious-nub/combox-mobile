@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { AuthService } from 'src/app/services/auth.service';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -11,16 +12,17 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class LoginPage implements OnInit {
 
-  constructor(private api: DataService, private toastController: ToastController, private router: Router) { }
+  constructor(private api: DataService, private toastController: ToastController, private router: Router, private auth: AuthService) { }
 
   ngOnInit() {
   }
 
-  onLogin(userLogin: NgForm): void {
+  onLogin(userLogin: NgForm):void {
     // console.log(userLogin.value);
-    this.api.login(userLogin.value).subscribe(async res => {
-      if (res.success === true && res.statusCode === 200) {
-        this.router.navigate(['user-dashboard']);
+    if (userLogin.valid) {
+      this.auth.login(userLogin.value).subscribe(async res => {
+        if (res.success === true && res.statusCode === 200) {
+          this.router.navigate(['user-dashboard']);
         // for toaster notification
         const toast = await this.toastController.create({
           message: res.message,
@@ -34,10 +36,8 @@ export class LoginPage implements OnInit {
           ],
         });
         await toast.present();
-        // for toaster notification
-      } else {
-        // this.toastr.warning(res.message, 'Warning!');
-        // for toaster notification
+        } else {
+          // for toaster notification
         const toast = await this.toastController.create({
           message: res.message,
           duration: 3000,
@@ -50,25 +50,24 @@ export class LoginPage implements OnInit {
           ],
         });
         await toast.present();
+        }
+      }, async error => {
         // for toaster notification
+        const toast = await this.toastController.create({
+          message: 'Server error!',
+          duration: 3000,
+          cssClass: 'custom-toast',
+          buttons: [
+            {
+              text: 'Dismiss',
+              role: 'cancel'
+            }
+          ],
+        });
+        await toast.present();
       }
-    }, async error => {
-      // for toaster notification
-      const toast = await this.toastController.create({
-        message: 'Oops,Server error.',
-        duration: 3000,
-        cssClass: 'custom-toast',
-        buttons: [
-          {
-            text: 'Dismiss',
-            role: 'cancel'
-          }
-        ],
-      });
-      await toast.present();
-      // for toaster notification
+      )
     }
-    )
   }
   // end user login
 
