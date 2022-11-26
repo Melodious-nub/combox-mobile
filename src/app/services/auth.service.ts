@@ -20,7 +20,7 @@ export class AuthService {
   }
 
   setTicketId(token: string): void {
-    localStorage.setItem('token2', token);
+    localStorage.setItem('token', token);
   }
 
   getToken(): string | null {
@@ -28,7 +28,7 @@ export class AuthService {
   }
 
   getTicketId(): string | null {
-    return localStorage.getItem('token2');
+    return localStorage.getItem('token');
   }
 
   isLoggedIn() {
@@ -42,7 +42,7 @@ export class AuthService {
   }
 
   logoutTicket() {
-    localStorage.removeItem('token2');
+    localStorage.removeItem('token');
      localStorage.clear();
     this.router.navigate(['login']);
   }

@@ -7,6 +7,7 @@ import * as signalR from '@microsoft/signalr';
 import { environment } from 'src/environments/environment';
 import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -33,7 +34,7 @@ export class UserDashboardPage implements OnInit,OnDestroy,AfterViewChecked {
   base64Test:any;
 
   constructor(private api: DataService, private audioRecordingService: AudioRecordingService,
-    private sanitizer: DomSanitizer, private router: Router,private auth: AuthService) { 
+    private sanitizer: DomSanitizer, private router: Router,private auth: AuthService, private toastController: ToastController,) { 
       this.fileString;
       this.audioRecordingService
       .recordingFailed()
@@ -195,18 +196,56 @@ export class UserDashboardPage implements OnInit,OnDestroy,AfterViewChecked {
     formData.append('Reviewer', 'user');
     formData.append('TicketNumber', this.ticketId);
     
-    this.api.postReview(formData).subscribe(res => {
-      // console.log(res);
+    this.api.postReview(formData).subscribe(async res => {
+      console.log(res);
       if (res.success === true && res.statusCode === 200) {
         reviewForm.resetForm();
         this.fileString = '';
+        // for toaster notification
+        const toast = await this.toastController.create({
+          message: res.message,
+          duration: 1000,
+          position: 'top',
+          cssClass: 'custom-toast',
+          buttons: [
+            {
+              text: 'Dismiss',
+              role: 'cancel',
+            }
+          ],
+        });
+        await toast.present();
       } else {
-        // this.toastr.warning(res.message, 'Warning!');
+        // for toaster notification
+        const toast = await this.toastController.create({
+          message: res.message,
+          duration: 1000,
+          position: 'top',
+          cssClass: 'custom-toast',
+          buttons: [
+            {
+              text: 'Dismiss',
+              role: 'cancel'
+            }
+          ],
+        });
+        await toast.present();
       }
     },
-     error => {
-      // console.log(error)
-      // this.toastr.warning('Oops! Something went wrong.', 'Server Error!');
+     async error => {
+      // for toaster notification
+      const toast = await this.toastController.create({
+        message: 'Server error!',
+        duration: 1000,
+        cssClass: 'custom-toast',
+        buttons: [
+          {
+            text: 'Dismiss',
+            role: 'cancel'
+          }
+        ],
+      });
+      await toast.present();
     }
     )
   }
@@ -214,7 +253,8 @@ export class UserDashboardPage implements OnInit,OnDestroy,AfterViewChecked {
 
     // logout
   logout() {
-    console.log('hello logout');
+    this.auth.logoutTicket();
+    this.router.navigate(['login']);
   }
 
   // for modal

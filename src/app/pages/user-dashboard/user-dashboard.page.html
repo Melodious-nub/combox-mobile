@@ -1,6 +1,6 @@
 <ion-header>
     <div class="ion-toolbar">
-      <span style="margin-top: 10px;"><b>Ticket ID</b></span> 
+      <span style="margin-top: 10px;"><b>{{ticketId}}</b></span> 
       <span class="other-option">
         <ion-button size="small" class="btn-logout" (click)="setOpen(true)"><i class="fa-solid fa-circle-info"></i></ion-button>
         <ion-button size="small" class="btn-logout" id="open-custom-dialog">Logout</ion-button>
@@ -12,54 +12,32 @@
   <!-- for chat ui -->
     <div class="chat">
       <div class="messages" id="chat" #scrollMe>
-        <div class="message parker">
-          Hey, man! What's up, Mr Stark? 👋
+        <div *ngFor="let review of reviewData">
+        <div class="message" [ngClass]="review.reviewer == 'admin' ? 'stark' : 'parker'" *ngIf="(review.message !== null)">
+          {{review.message}}
         </div>
-        <div class="message stark">
-          Kid, where'd you come from? 
+
+        <div class="message" [ngClass]="review.reviewer == 'admin' ? 'stark' : 'parker'" *ngIf="(review.imageFile !== null)">
+          <img src="{{review.imageFile}}" alt="" style="height: 80px; width: 80px; border-radius: 15px; cursor: pointer;">
         </div>
-        <div class="message parker">
-          Field trip! 🤣
-        </div>
-        <div class="message parker">
-          Uh, what is this guy's problem, Mr. Stark? 🤔
-        </div>
-        <div class="message stark">
-          Uh, he's from space, he came here to steal a necklace from a wizard.
-        </div>
-        <div class="message parker">
-          Field trip! 🤣
-        </div>
-        <div class="message parker">
-          Uh, what is this guy's problem, Mr. Stark? 🤔
-        </div>
-        <div class="message stark">
-          Uh, he's from space, he came here to steal a necklace from a wizard.
-        </div>
-        <div class="message parker">
-          Field trip! 🤣
-        </div>
-        <div class="message parker">
-          Uh, what is this guy's problem, Mr. Stark? 🤔
-        </div>
-        <div class="message stark">
-          Uh, he's from space, he came here to steal a necklace from a wizard.
-        </div>
-        <div class="message parker">
-          Field trip! 🤣
-        </div>
-        <div class="message parker">
-          Uh, what is this guy's problem, Mr. Stark? 🤔
-        </div>
-        <div class="message stark">
-          Uh, he's from space, he came here to steal a necklace from a wizard.
-        </div>
+
+        <div class="message" [ngClass]="review.reviewer == 'admin' ? 'stark' : 'parker'" *ngIf="(review.audioFile !== null)">
+          <audio controls src="{{review.audioFile}}" style="height: 30px;"></audio>
+        </div>  
+      </div>
       </div>
 
       <!-- for input options -->
+      <form #reviewForm="ngForm" (ngSubmit)="onReviewSubmit(reviewForm)">
         <div class="input">
-          <i class="fas fa-camera"></i><i class="far fa-laugh-beam"></i><input placeholder="Type your message here!" type="text" /><i class="fas fa-microphone"></i>
+          <input ngModel name="fileInput" id="companyPhotos" type="file" accept="image/*" (change)="onSelect($event)" #fileInput="ngModel" style="display: none;">
+          <label for="companyPhotos"><i class="fas fa-camera"></i></label>
+          <i class="fas fa-microphone"></i>
+          <input placeholder="Type your message here!" type="text" #ReviewMessage="ngModel" ngModel name="ReviewMessage"/>
+          <!-- <a type="submit"></a> -->
+          <button type="submit" style="background: transparent;"><i class='bx bxs-send'></i></button>
         </div>
+      </form>
     </div>
 
     <!-- modal for data -->

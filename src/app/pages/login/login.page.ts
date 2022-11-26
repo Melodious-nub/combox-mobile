@@ -26,7 +26,7 @@ export class LoginPage implements OnInit {
         // for toaster notification
         const toast = await this.toastController.create({
           message: res.message,
-          duration: 3000,
+          duration: 1500,
           cssClass: 'custom-toast',
           buttons: [
             {
@@ -40,7 +40,7 @@ export class LoginPage implements OnInit {
           // for toaster notification
         const toast = await this.toastController.create({
           message: res.message,
-          duration: 3000,
+          duration: 1500,
           cssClass: 'custom-toast',
           buttons: [
             {
@@ -55,7 +55,7 @@ export class LoginPage implements OnInit {
         // for toaster notification
         const toast = await this.toastController.create({
           message: 'Server error!',
-          duration: 3000,
+          duration: 1500,
           cssClass: 'custom-toast',
           buttons: [
             {
