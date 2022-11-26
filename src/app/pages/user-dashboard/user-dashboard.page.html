@@ -19,10 +19,11 @@
 
         <div class="message" [ngClass]="review.reviewer == 'admin' ? 'stark' : 'parker'" *ngIf="(review.imageFile !== null)">
           <img src="{{review.imageFile}}" alt="" style="height: 80px; width: 80px; border-radius: 15px; cursor: pointer;">
+          <button type="button" style="background: transparent;" (click)="downloadImage(review.imageFile)"><i class="fa-solid fa-download"></i></button>
         </div>
 
         <div class="message" [ngClass]="review.reviewer == 'admin' ? 'stark' : 'parker'" *ngIf="(review.audioFile !== null)">
-          <audio controls src="{{review.audioFile}}" style="height: 30px;"></audio>
+          <audio controls src="{{review.audioFile}}" style="height: 30px; max-width: 220px;"></audio>
         </div>  
       </div>
       </div>
@@ -32,10 +33,33 @@
         <div class="input">
           <input ngModel name="fileInput" id="companyPhotos" type="file" accept="image/*" (change)="onSelect($event)" #fileInput="ngModel" style="display: none;">
           <label for="companyPhotos"><i class="fas fa-camera"></i></label>
-          <i class="fas fa-microphone"></i>
+          <!-- <i class="fas fa-microphone"></i> -->
+
+          <!-- recorder controls -->
+									<div class="btn-group">
+										<!-- button clear -->
+										<div class="clear-btn" *ngIf="!isRecording && blobUrl">
+											<button type="button" id="clearRec" (click)="clearRecordedData()" style="background: transparent;"><i class="bx bxs-trash" style="width: 16px; height: 16px;"></i></button>
+										</div>
+										<!-- button start record -->
+										<div class="play-btn" *ngIf="!isRecording && !blobUrl">
+											<button type="button" id="startRec" (click)="startRecording()" style="background: transparent;"><i class="fas fa-microphone" style="width: 16px; height: 16px;"></i></button>
+										</div>
+										<!-- button stop -->
+										<div class="stop-btn" *ngIf="isRecording && !blobUrl">
+											<button type="button" (click)="stopRecording()" style="background: transparent;"><i class='bx bxs-microphone-off' style="width: 16px; height: 16px;"></i></button>
+										</div>
+										<!-- button download -->
+										<!-- <div class="download-btn " *ngIf="!isRecording && blobUrl ">
+											<button type="button " class="btn btn-outline-secondary btn-voice "
+												(click)="download() "><i class="fa-solid fa-download"
+													style="width: 16px; height: 16px; "></i></button>
+										</div> -->
+                    </div>
+
           <input placeholder="Type your message here!" type="text" #ReviewMessage="ngModel" ngModel name="ReviewMessage"/>
           <!-- <a type="submit"></a> -->
-          <button type="submit" style="background: transparent;"><i class='bx bxs-send'></i></button>
+          <button type="submit" style="background: transparent;"><i class='bx bxs-send' style="width: 16px; height: 16px;"></i></button>
         </div>
       </form>
     </div>
@@ -56,9 +80,11 @@
           <p><span style="padding-right: 10px;"><b>Company Name:</b></span><span>{{ticketData.companyName}}</span></p>
           <p><span style="padding-right: 10px;"><b>Company address:</b></span><span>{{ticketData.companyAddress}}</span></p>
           <p><span style="padding-right: 10px;"><b>Complain:</b></span><span>{{ticketData.complain}}</span></p>
-          <p><span style="padding-right: 10px;"><b>Attached voice:</b></span><br><span><p class="text-start" *ngIf="ticketData.imageFile !== null"><img [src]="photoURL()" width="84px"
-            style="border-radius: 15px; max-height: 84px; cursor: pointer;" alt=""
-            data-bs-toggle="modal" data-bs-target="#modalImage"></p></span></p>
+          <h6><b>Attached voice:</b></h6>
+          <p class="text-start" *ngIf="ticketData.voiceMessage !== null"><audio style="max-width: 220px; height: 30px;" controls [src]="audioURL()"></audio></p>
+          <p><span style="padding-right: 10px;"><b>Attached Photo:</b></span><br><span><p class="text-start" *ngIf="ticketData.imageFile !== null"><img [src]="photoURL()" width="84px" style="border-radius: 15px; max-height: 84px; cursor: pointer;" alt=""><br>
+            <button *ngIf="ticketData.imageFile !== null" type="button" style="color: black; background: transparent;" (click)="downloadImage(ticketData.imageFile)"><i class="fa-solid fa-download fa-xl"></i></button>
+          </p></span></p>
         </ion-content>
       </ng-template>
     </ion-modal>

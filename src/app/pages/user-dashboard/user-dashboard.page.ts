@@ -277,4 +277,23 @@ export class UserDashboardPage implements OnInit,OnDestroy,AfterViewChecked {
         } catch(err) { }                 
     }
 
+  // for download image
+  downloadImage(data:any) {
+    console.log(data);
+    this.showPdf(data);
+  }
+  openTicketsSort(data:any){
+   
+  }
+
+  showPdf(data:any) {
+  const linkSource = data;
+  const downloadLink = document.createElement('a');
+  const fileName = 'sample.png';
+
+  downloadLink.href = linkSource;
+  downloadLink.download = fileName;
+  downloadLink.click();
+}
+
 }
