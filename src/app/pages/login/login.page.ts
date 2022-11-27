@@ -71,4 +71,10 @@ export class LoginPage implements OnInit {
   }
   // end user login
 
+
+  // navigate route
+  goBack() {
+    this.router.navigate(['home']);
+  }
+
 }

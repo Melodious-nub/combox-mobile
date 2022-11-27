@@ -171,6 +171,9 @@ export class WriteAndPostPage implements OnInit,OnDestroy {
     )
   }
 
-  // for file select
+  // navigate route
+  goBack() {
+    this.router.navigate(['home']);
+  }
 
 }

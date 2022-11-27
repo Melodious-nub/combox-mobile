@@ -203,3 +203,18 @@ ion-button {
 .file-input.-chosen > .label {
   opacity: 1;
 }
+
+
+// for ion header
+
+.ion-toolbar {
+  display: flex;
+  justify-content: space-between;
+  color: #90278E;
+  font-weight: 500;
+  button {
+    margin-right: 15px; 
+    background: transparent; 
+    color: #90278E;
+  }
+}

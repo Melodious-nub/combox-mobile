@@ -27,6 +27,18 @@
     --background: #90278E;
  }
 
+ .ion-toolbar {
+  display: flex;
+  justify-content: space-between;
+  color: #90278E;
+  font-weight: 500;
+  button {
+    margin-right: 15px; 
+    background: transparent; 
+    color: #90278E;
+  }
+}
+
  .example-full-width {
   width: 100%;
 }
