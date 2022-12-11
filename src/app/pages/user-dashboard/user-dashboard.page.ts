@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { ToastController } from '@ionic/angular';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -112,9 +113,14 @@ export class UserDashboardPage implements OnInit,OnDestroy,AfterViewChecked {
      .build();
      //start
      this.connection.start().then(function () {  
-       console.log(' Connected!');  
-     }).catch(function (err:any) {  
-       return console.error(err.toString());  
+      //  console.log(' Connected!');  
+     }).catch( (err:any) => { 
+      setTimeout(() => this.connection.start(),5000); 
+      setTimeout(() => this.connection.start(),5000); 
+      setTimeout(() => this.connection.start(),5000);
+      setTimeout(() => this.connection.start(),5000);
+      setTimeout(() => this.connection.start(),5000);
+       //return console.error(err.toString());  
      });
   }
 
@@ -136,8 +142,10 @@ export class UserDashboardPage implements OnInit,OnDestroy,AfterViewChecked {
     })
   }
 
+  pageNum: any = 0;
+  pageSiz: any = 10;
   fetchReview() {
-    this.api.getReview(this.auth.getTicketId()).subscribe(res => {
+    this.api.getReviewWithPagination(this.auth.getTicketId(),this.pageNum,this.pageSiz).subscribe(res => {
       this.reviewData = res.data;
     })
   }
@@ -189,18 +197,28 @@ export class UserDashboardPage implements OnInit,OnDestroy,AfterViewChecked {
   onReviewSubmit(reviewForm: NgForm) {
     const formData = new FormData();
     this.ticketId = this.auth.getTicketId();
-
-    formData.append('File', this.fileString);
-    formData.append('audioFile', this.teste.blob);
+    if(this.blobUrl){
+      this.imageFile.push(this.teste.blob)
+      //formData.append('AudioFile', this.teste.blob);
+    }
+    for(let file in this.imageFile){
+      formData.append('AudioFile', this.imageFile[file]);
+    }
+  //  formData.append('File', this.fileString);
+   // formData.append('audioFile', this.teste.blob);
     formData.append('ReviewMessage', reviewForm.value.ReviewMessage);
     formData.append('Reviewer', 'user');
     formData.append('TicketNumber', this.ticketId);
     
     this.api.postReview(formData).subscribe(async res => {
-      console.log(res);
+      // console.log(res);
+      this.imageFile = [];
       if (res.success === true && res.statusCode === 200) {
-        reviewForm.resetForm();
+        reviewForm.controls['ReviewMessage'].setValue('');
+        // this.clearRecordedData();
         this.fileString = '';
+        this.pageNum=0;
+        this.fetchReview();
         // for toaster notification
         const toast = await this.toastController.create({
           message: res.message,
@@ -254,7 +272,7 @@ export class UserDashboardPage implements OnInit,OnDestroy,AfterViewChecked {
     // logout
   logout() {
     this.auth.logoutTicket();
-    this.router.navigate(['login']);
+    // this.router.navigate(['login']);
   }
 
   // for modal
@@ -277,23 +295,79 @@ export class UserDashboardPage implements OnInit,OnDestroy,AfterViewChecked {
         } catch(err) { }                 
     }
 
-  // for download image
-  downloadImage(data:any) {
-    console.log(data);
-    this.showPdf(data);
-  }
-  openTicketsSort(data:any){
-   
+    // for download image
+    downloadImage(data:any) {
+      // console.log(data);
+      this.showPdf(data);
+    }
+    openTicketsSort(data:any){
+     
+    }
+  
+    showPdf(data:any) {
+    const linkSource = data;
+    const downloadLink = document.createElement('a');
+    const fileName = 'sample.png';
+  
+    downloadLink.href = linkSource;
+    downloadLink.download = fileName;
+    downloadLink.click();
   }
 
-  showPdf(data:any) {
-  const linkSource = data;
-  const downloadLink = document.createElement('a');
-  const fileName = 'sample.png';
+  // for infinite scroll
+  // onScrollUp() {
+  //   console.log("scrolled up!!");
+  // }
 
-  downloadLink.href = linkSource;
-  downloadLink.download = fileName;
-  downloadLink.click();
+  // onScrollDown() {
+  //   console.log("scrolled down!!");
+  // }
+
+  // pageSlice: any;
+// paginator new for message
+onPageChangeMsg(event: PageEvent) {
+  // console.log('paginator', event);
+  this.pageNum = event.pageIndex;
+  this.pageSiz = event.pageSize;
+  this.fetchReview();
+}
+
+// for pagination bootstrap
+pagination: boolean = true;
+onPreviousButtonClick() {
+  if (this.pagination == true) {
+    this.pageNum++;
+  }
+
+  this.fetchReview();
+  // console.log(this.reviewData)
+  if (this.reviewData.length == 0) {
+    this.pageNum--;
+    this.pagination == false;
+  }
+  // console.log('pagNumber:', this.pageNum)
+
+  // if(this.reviewDataCount==0){
+  //   console.log("no data")
+  //   this.pageNum--;
+  // }
+}
+onNextButtonClick() {
+  if (this.pagination == true && this.pageNum >=1) {
+    this.pageNum--;
+  }
+
+  this.fetchReview(); 
+  // console.log(this.reviewData)
+  if (this.reviewData.length == 0) {
+    this.pageNum++;
+    this.pagination == false;
+  }
+  // console.log('pagNumber:', this.pageNum)
+  // if(this.reviewDataCount==0){
+  //   console.log("no data")
+  //   this.pageNum++;
+  // }
 }
 
 }

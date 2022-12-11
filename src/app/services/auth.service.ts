@@ -47,6 +47,7 @@ export class AuthService {
     this.router.navigate(['login']);
   }
 
+  token:any;
   // userLogin auth
   login(data: any): Observable<any> {
     return this.http.post<any>(environment.baseUrl+'/api/v1/UserLogIn', data).pipe(map((res: any) => {
@@ -57,30 +58,6 @@ export class AuthService {
           this.setTicketId(this.token);
           return res;
         } else {
-          return res;
-        }
-      })
-    );
-  }
-
-  // admin login
-  token:any;
-  loginAdmin(data: any): Observable<any> {
-    // console.log('log in data ',data)
-    return this.http.post<any>(environment.baseUrl+'/api/v1/Admin', data).pipe(
-      map((res: any) => {
-        // this.currentUser = res;
-        if (res.success === true && res.statusCode === 200) {
-          // console.log('log in response',res)
-          localStorage.removeItem('token');
-          this.token=res.data;
-          console.log(this.token);
-          
-          this.setToken(this.token);
-          // this.tokenVeri = res.data;
-          return res;
-        } else {
-          // this.setToken(res.data = null);
           return res;
         }
       })
