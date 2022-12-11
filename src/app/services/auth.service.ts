@@ -20,6 +20,10 @@ export class AuthService {
   }
 
   setTicketId(token: string): void {
+    localStorage.setItem('userId', token);
+  }
+
+  setTicketAuth(token: string): void {
     localStorage.setItem('token', token);
   }
 
@@ -28,6 +32,10 @@ export class AuthService {
   }
 
   getTicketId(): string | null {
+    return localStorage.getItem('userId');
+  }
+
+  getTicketAuth(): string | null {
     return localStorage.getItem('token');
   }
 
@@ -35,27 +43,37 @@ export class AuthService {
     return this.getToken() !== null;
   }
 
+  isTicketLoggedIn() {
+    return this.getTicketAuth() !== null;
+  }
+
   logout() {
     localStorage.removeItem('token');
-     localStorage.clear();
+    //  localStorage.clear();
     this.router.navigate(['admin-login']);
   }
 
   logoutTicket() {
-    localStorage.removeItem('token');
-     localStorage.clear();
+    localStorage.removeItem('userId');
+    localStorage.removeItem('token')
+    //  localStorage.clear();
     this.router.navigate(['login']);
   }
 
-  token:any;
   // userLogin auth
+  userId: any;
+  authToken: any;
   login(data: any): Observable<any> {
-    return this.http.post<any>(environment.baseUrl+'/api/v1/UserLogIn', data).pipe(map((res: any) => {
+    return this.http.post<any>(environment.baseUrl+'/api/v1/UserLogIn', data).pipe(
+      map((res: any) => {
         // this.currentUser = res;
         if (res.success === true && res.statusCode === 200) {
-          this.token=res.data;
+          this.authToken = res.data;
+          this.userId = res.message;
           localStorage.removeItem('token');
-          this.setTicketId(this.token);
+          localStorage.removeItem('userId');
+          this.setTicketId(this.userId);
+          this.setTicketAuth(this.authToken);
           return res;
         } else {
           return res;
