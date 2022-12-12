@@ -20,12 +20,12 @@
       <p class="d-flex">
         <span><img src="../../../assets/img/ion_ticket.png"></span>
         <span>{{'Ticket number' | translate}}: </span>
-        <span><b>Tr-01234</b></span>
+        <span><b>{{ticketCredNum}}</b></span>
       </p>
       <p class="d-flex">
         <img src="../../../assets/img/fluent_password-16-filled.png">
         <span>{{'Password' | translate}}: </span>
-        <span><b>abcdfkjdjf</b></span>
+        <span><b>{{ticketCredPass}}</b></span>
       </p>
       <ion-button size="small" class="btn-ion-cpy" [cdkCopyToClipboard]="totalTicketInfo"><i class="fa-regular fa-copy" style="margin-right: 3px;"></i>Copy</ion-button>
       <ion-button size="small" class="btn-ion-listen" (click)="playAudio()"><i class="fa-solid fa-volume-high"></i></ion-button>
